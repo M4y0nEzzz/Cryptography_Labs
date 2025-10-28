@@ -4,8 +4,8 @@
 pip install -r requirements.txt
 
 ## Запуск
-## python src/main.py --algo xor --key "secret" --input imgs/checkerboard.png
-## python src/main.py --algo aes-ctr --key "secret" --nonce "0011223344556677" --input imgs/gradient.png
+#### python src/main.py --algo xor --key "secret" --input imgs/checkerboard.png
+#### python src/main.py --algo aes-ctr --key "secret" --nonce "0011223344556677" --input imgs/gradient.png
 
 ## Результаты
 imgs/*_xor.png, *_aes-ctr.png, *_dec.png — шифротексты и обратимость
