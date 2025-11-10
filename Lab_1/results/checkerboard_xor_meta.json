@@ -1,8 +1,8 @@
 {
   "algo": "xor",
   "key_hash": "bd9a9f39d74fba794436fbb24f9b78746639c0b3ec385e8ea83bf64d3245f528",
-  "nonce": null,
-  "date": "2025-10-28T10:12:53",
+  "nonce_or_iv": "76e147b2b5815fbb589a949fe107b5c6",
+  "date": "2025-11-08T20:16:07",
   "input": "imgs/checkerboard.png",
   "output": "imgs/checkerboard_xor.png"
 }
