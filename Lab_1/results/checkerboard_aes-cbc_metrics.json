@@ -1,0 +1,14 @@
+{
+  "algo": "aes-cbc",
+  "input": "imgs/checkerboard.png",
+  "output": "imgs/checkerboard_aes-cbc.png",
+  "iv_hex": "618e499b1b55c56ef70fc5032277d2c0",
+  "entropy_src": 2.584962500721156,
+  "entropy_enc": 7.999762299707384,
+  "corr_src": 0.9412915851272013,
+  "corr_enc": 0.0017522895084965185,
+  "NPCR_src_vs_enc": 99.61636861165366,
+  "UACI_src_vs_enc": 35.84016388537837,
+  "KeySensitivity_NPCR": 99.59983825683594,
+  "KeySensitivity_UACI": 33.4260195065168
+}

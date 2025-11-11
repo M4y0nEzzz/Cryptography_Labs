@@ -1,0 +1,14 @@
+{
+  "algo": "xor",
+  "input": "imgs/gradient.png",
+  "output": "imgs/gradient_xor.png",
+  "iv_hex": "f71e0570f12688d4cc850b3b7616d6da",
+  "entropy_src": 7.971641949678417,
+  "entropy_enc": 7.999762617380838,
+  "corr_src": 0.9999638037450129,
+  "corr_enc": -0.00021537278293514206,
+  "NPCR_src_vs_enc": 99.60835774739584,
+  "UACI_src_vs_enc": 32.061564127604164,
+  "KeySensitivity_NPCR": 99.60314432779947,
+  "KeySensitivity_UACI": 33.46843594819113
+}

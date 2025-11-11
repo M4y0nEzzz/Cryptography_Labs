@@ -1,0 +1,8 @@
+{
+  "algo": "xor",
+  "key_hash": "bd9a9f39d74fba794436fbb24f9b78746639c0b3ec385e8ea83bf64d3245f528",
+  "nonce_or_iv": "f71e0570f12688d4cc850b3b7616d6da",
+  "date": "2025-11-08T20:16:29",
+  "input": "imgs/gradient.png",
+  "output": "imgs/gradient_xor.png"
+}
