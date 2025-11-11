@@ -123,7 +123,8 @@ H(X) = -Σ p(x) × log₂(p(x))
 
 Рассмотрим несколько примеров гистограмм и метрик, которые у меня получились: 
 
-1) ![Checkerboard_src](Lab_1/results/checkerboard_xor_hist_src.png)
+1) Шахматная доска, алгоритм aes-ecb.
+2) 
 
 
 

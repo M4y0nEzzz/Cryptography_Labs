@@ -1,8 +1,0 @@
-{
-  "algo": "aes-ecb",
-  "key_hash": "bd9a9f39d74fba794436fbb24f9b78746639c0b3ec385e8ea83bf64d3245f528",
-  "nonce_or_iv": null,
-  "date": "2025-11-08T20:24:31",
-  "input": "imgs/checkerboard.png",
-  "output": "imgs/checkerboard_aes-ecb.png"
-}
