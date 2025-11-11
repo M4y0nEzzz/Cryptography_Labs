@@ -19,7 +19,7 @@ class XorShift32:
 
     def __init__(self, state: int) -> None:
         if state == 0:
-            state = 0xDEADBEEF
+            state = 0x12345678
         self.state = state & 0xFFFFFFFF
 
     def next_u32(self) -> int:
@@ -48,7 +48,7 @@ def _derive_stream_seed(key: bytes, iv: bytes) -> int:
     h = _sha256(key + iv)
     seed = int.from_bytes(h[:4], "big")
     if seed == 0:
-        seed = 0xCAFEBABE
+        seed = 0x87654321
     return seed
 ```
 
