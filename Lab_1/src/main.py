@@ -72,8 +72,6 @@ def run_xor(input_path: str, key: bytes) -> Dict[str, Any]:
 
 def run_aes_ecb(input_path: str, key: bytes) -> Dict[str, Any]:
     rgb, w, h = load_image(input_path)
-
-    # В encryptors.py AES-ECB должен быть без паддинга и требовать кратности 16
     enc = aes_ecb_encrypt(rgb, key)
     dec = aes_ecb_decrypt(enc, key)
 

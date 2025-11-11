@@ -2,13 +2,13 @@
   "algo": "xor",
   "input": "imgs/checkerboard.png",
   "output": "imgs/checkerboard_xor.png",
-  "iv_hex": "76e147b2b5815fbb589a949fe107b5c6",
+  "iv_hex": "1de5169c02e734293c5d342dab65371c",
   "entropy_src": 2.584962500721156,
-  "entropy_enc": 7.999744106196563,
+  "entropy_enc": 7.999784619781369,
   "corr_src": 0.9412915851272013,
-  "corr_enc": -0.003677575112892951,
-  "NPCR_src_vs_enc": 99.62285359700522,
-  "UACI_src_vs_enc": 35.80210966222426,
-  "KeySensitivity_NPCR": 99.60339864095053,
-  "KeySensitivity_UACI": 33.41796525942734
+  "corr_enc": -0.0011394576013441687,
+  "NPCR_src_vs_enc": 99.6026357014974,
+  "UACI_src_vs_enc": 35.85642546610116,
+  "KeySensitivity_NPCR": 99.60784912109375,
+  "KeySensitivity_UACI": 33.43305001851001
 }
