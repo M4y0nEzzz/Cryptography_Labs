@@ -1,15 +1,10 @@
 # Лаба 2: Стеганография в изображениях (LSB)
 
 ## Утилита
-### Вставка сообщения из терминала
+### Вставка текста
 ```txt
     python src/main.py encode --cover imgs/checkerboard.png --out imgs/checkerboard_stego.png --text "Сообшение"
 ```
-### Вставка сообщения из файла
-```txt
-    python src/main.py encode --cover imgs/gradient.png --out imgs/gradient_stego.png --text-file message.txt
-``` 
-#### --text-file - это путь к файлу с сообщением
 
 ### Ограничение payload
 ```txt
@@ -23,13 +18,9 @@
 ```
 #### --bits — сколько младших битов канала использовать
 
-### Извлечение сообщения в терминал
+### Извлечение текста
 ```txt
    python src/main.py decode --stego imgs/checkerboard_stego.png
-```
-### Извлечение сообщения в файл
-```txt
-   python src/main.py decode --stego imgs/gradient_stego.png --out-text-file recovered.txt
 ```
 #### --out-text-file — путь к файлу, куда сохранить
 
@@ -39,11 +30,11 @@
 ```
 
 ## Тесты
-- **Встроить сообщение в checkerboard.png с payload 0.5%**
+- **Вставить текст в checkerboard.png с payload 0.5%**
 ```txt
     python src/main.py encode --cover imgs/checkerboard.png --out imgs/checkerboard_stego_0p5.png --text "Cool_test_1" --payload-percent 0.5
 ```
-- **Извлечь сообщение из checkerboard_stego_0p5.png**
+- **Достать текст из checkerboard_stego_0p5.png**
 ```txt
     python src/main.py decode --stego imgs/checkerboard_stego_0p5.png
 ```
