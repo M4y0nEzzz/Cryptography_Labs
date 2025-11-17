@@ -1,0 +1,866 @@
+[
+  {
+    "cover": "imgs\\checkerboard.png",
+    "stego": "results\\checkerboard_lsb_0p1.png",
+    "bits_per_channel": 1,
+    "payload_percent": 0.1,
+    "psnr": 81.42893718865716,
+    "ssim": 0.9999999787913745,
+    "chi2_cover": {
+      "R": {
+        "chi2": 262144.0,
+        "df": 1
+      },
+      "G": {
+        "chi2": 262144.0,
+        "df": 1
+      },
+      "B": {
+        "chi2": 262144.0,
+        "df": 1
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 261616.26739501953,
+        "df": 1
+      },
+      "G": {
+        "chi2": 261672.2124633789,
+        "df": 1
+      },
+      "B": {
+        "chi2": 261672.21270751953,
+        "df": 1
+      }
+    }
+  },
+  {
+    "cover": "imgs\\checkerboard.png",
+    "stego": "results\\checkerboard_lsb_0p5.png",
+    "bits_per_channel": 1,
+    "payload_percent": 0.5,
+    "psnr": 74.12076347277703,
+    "ssim": 0.9999998890254842,
+    "chi2_cover": {
+      "R": {
+        "chi2": 262144.0,
+        "df": 1
+      },
+      "G": {
+        "chi2": 262144.0,
+        "df": 1
+      },
+      "B": {
+        "chi2": 262144.0,
+        "df": 1
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 259502.71936035156,
+        "df": 1
+      },
+      "G": {
+        "chi2": 259586.28421020508,
+        "df": 1
+      },
+      "B": {
+        "chi2": 259443.03323364258,
+        "df": 1
+      }
+    }
+  },
+  {
+    "cover": "imgs\\checkerboard.png",
+    "stego": "results\\checkerboard_lsb_1p0.png",
+    "bits_per_channel": 1,
+    "payload_percent": 1.0,
+    "psnr": 71.1247441114372,
+    "ssim": 0.9999997617944818,
+    "chi2_cover": {
+      "R": {
+        "chi2": 262144.0,
+        "df": 1
+      },
+      "G": {
+        "chi2": 262144.0,
+        "df": 1
+      },
+      "B": {
+        "chi2": 262144.0,
+        "df": 1
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 256918.3069152832,
+        "df": 1
+      },
+      "G": {
+        "chi2": 256890.595703125,
+        "df": 1
+      },
+      "B": {
+        "chi2": 256914.34600830078,
+        "df": 1
+      }
+    }
+  },
+  {
+    "cover": "imgs\\checkerboard.png",
+    "stego": "results\\checkerboard_lsb_5p0.png",
+    "bits_per_channel": 1,
+    "payload_percent": 5.0,
+    "psnr": 64.13878675261267,
+    "ssim": 0.999998826847336,
+    "chi2_cover": {
+      "R": {
+        "chi2": 262144.0,
+        "df": 1
+      },
+      "G": {
+        "chi2": 262144.0,
+        "df": 1
+      },
+      "B": {
+        "chi2": 262144.0,
+        "df": 1
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 236309.92736816406,
+        "df": 1
+      },
+      "G": {
+        "chi2": 236621.50390625,
+        "df": 1
+      },
+      "B": {
+        "chi2": 236606.24072265625,
+        "df": 1
+      }
+    }
+  },
+  {
+    "cover": "imgs\\checkerboard_stego.png",
+    "stego": "results\\checkerboard_stego_lsb_0p1.png",
+    "bits_per_channel": 1,
+    "payload_percent": 0.1,
+    "psnr": 81.37032705730547,
+    "ssim": 0.9999999782648785,
+    "chi2_cover": {
+      "R": {
+        "chi2": 261892.06399536133,
+        "df": 1
+      },
+      "G": {
+        "chi2": 261952.03521728516,
+        "df": 1
+      },
+      "B": {
+        "chi2": 261948.0373840332,
+        "df": 1
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 261632.2505493164,
+        "df": 1
+      },
+      "G": {
+        "chi2": 261688.19854736328,
+        "df": 1
+      },
+      "B": {
+        "chi2": 261620.2618713379,
+        "df": 1
+      }
+    }
+  },
+  {
+    "cover": "imgs\\checkerboard_stego.png",
+    "stego": "results\\checkerboard_stego_lsb_0p5.png",
+    "bits_per_channel": 1,
+    "payload_percent": 0.5,
+    "psnr": 74.09670277511825,
+    "ssim": 0.9999998796936469,
+    "chi2_cover": {
+      "R": {
+        "chi2": 261892.06399536133,
+        "df": 1
+      },
+      "G": {
+        "chi2": 261952.03521728516,
+        "df": 1
+      },
+      "B": {
+        "chi2": 261948.0373840332,
+        "df": 1
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 259530.5471496582,
+        "df": 1
+      },
+      "G": {
+        "chi2": 259435.0383605957,
+        "df": 1
+      },
+      "B": {
+        "chi2": 259427.0764465332,
+        "df": 1
+      }
+    }
+  },
+  {
+    "cover": "imgs\\checkerboard_stego.png",
+    "stego": "results\\checkerboard_stego_lsb_1p0.png",
+    "bits_per_channel": 1,
+    "payload_percent": 1.0,
+    "psnr": 71.1302491759581,
+    "ssim": 0.9999997607855576,
+    "chi2_cover": {
+      "R": {
+        "chi2": 261892.06399536133,
+        "df": 1
+      },
+      "G": {
+        "chi2": 261952.03521728516,
+        "df": 1
+      },
+      "B": {
+        "chi2": 261948.0373840332,
+        "df": 1
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 256969.78887939453,
+        "df": 1
+      },
+      "G": {
+        "chi2": 256819.3179321289,
+        "df": 1
+      },
+      "B": {
+        "chi2": 256914.3594970703,
+        "df": 1
+      }
+    }
+  },
+  {
+    "cover": "imgs\\checkerboard_stego.png",
+    "stego": "results\\checkerboard_stego_lsb_5p0.png",
+    "bits_per_channel": 1,
+    "payload_percent": 5.0,
+    "psnr": 64.1203248136363,
+    "ssim": 0.9999988154778761,
+    "chi2_cover": {
+      "R": {
+        "chi2": 261892.06399536133,
+        "df": 1
+      },
+      "G": {
+        "chi2": 261952.03521728516,
+        "df": 1
+      },
+      "B": {
+        "chi2": 261948.0373840332,
+        "df": 1
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 236283.3380432129,
+        "df": 1
+      },
+      "G": {
+        "chi2": 236291.15481567383,
+        "df": 1
+      },
+      "B": {
+        "chi2": 236606.24926757812,
+        "df": 1
+      }
+    }
+  },
+  {
+    "cover": "imgs\\checkerboard_stego_0p5.png",
+    "stego": "results\\checkerboard_stego_0p5_lsb_0p1.png",
+    "bits_per_channel": 1,
+    "payload_percent": 0.1,
+    "psnr": 81.46448673082759,
+    "ssim": 0.9999999771909434,
+    "chi2_cover": {
+      "R": {
+        "chi2": 262048.01177978516,
+        "df": 1
+      },
+      "G": {
+        "chi2": 262072.00714111328,
+        "df": 1
+      },
+      "B": {
+        "chi2": 262072.00592041016,
+        "df": 1
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 261596.28677368164,
+        "df": 1
+      },
+      "G": {
+        "chi2": 261624.2579345703,
+        "df": 1
+      },
+      "B": {
+        "chi2": 261672.2139892578,
+        "df": 1
+      }
+    }
+  },
+  {
+    "cover": "imgs\\checkerboard_stego_0p5.png",
+    "stego": "results\\checkerboard_stego_0p5_lsb_0p5.png",
+    "bits_per_channel": 1,
+    "payload_percent": 0.5,
+    "psnr": 73.98898532823164,
+    "ssim": 0.9999998782998074,
+    "chi2_cover": {
+      "R": {
+        "chi2": 262048.01177978516,
+        "df": 1
+      },
+      "G": {
+        "chi2": 262072.00714111328,
+        "df": 1
+      },
+      "B": {
+        "chi2": 262072.00592041016,
+        "df": 1
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 259315.67471313477,
+        "df": 1
+      },
+      "G": {
+        "chi2": 259506.66946411133,
+        "df": 1
+      },
+      "B": {
+        "chi2": 259450.9524230957,
+        "df": 1
+      }
+    }
+  },
+  {
+    "cover": "imgs\\checkerboard_stego_0p5.png",
+    "stego": "results\\checkerboard_stego_0p5_lsb_1p0.png",
+    "bits_per_channel": 1,
+    "payload_percent": 1.0,
+    "psnr": 71.13686447779929,
+    "ssim": 0.9999997640417343,
+    "chi2_cover": {
+      "R": {
+        "chi2": 262048.01177978516,
+        "df": 1
+      },
+      "G": {
+        "chi2": 262072.00714111328,
+        "df": 1
+      },
+      "B": {
+        "chi2": 262072.00592041016,
+        "df": 1
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 256906.42993164062,
+        "df": 1
+      },
+      "G": {
+        "chi2": 256918.32656860352,
+        "df": 1
+      },
+      "B": {
+        "chi2": 256926.29006958008,
+        "df": 1
+      }
+    }
+  },
+  {
+    "cover": "imgs\\checkerboard_stego_0p5.png",
+    "stego": "results\\checkerboard_stego_0p5_lsb_5p0.png",
+    "bits_per_channel": 1,
+    "payload_percent": 5.0,
+    "psnr": 64.1681796165535,
+    "ssim": 0.9999988329894013,
+    "chi2_cover": {
+      "R": {
+        "chi2": 262048.01177978516,
+        "df": 1
+      },
+      "G": {
+        "chi2": 262072.00714111328,
+        "df": 1
+      },
+      "B": {
+        "chi2": 262072.00592041016,
+        "df": 1
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 236910.37158203125,
+        "df": 1
+      },
+      "G": {
+        "chi2": 236693.65505981445,
+        "df": 1
+      },
+      "B": {
+        "chi2": 236416.28381347656,
+        "df": 1
+      }
+    }
+  },
+  {
+    "cover": "imgs\\gradient.png",
+    "stego": "results\\gradient_lsb_0p1.png",
+    "bits_per_channel": 1,
+    "payload_percent": 0.1,
+    "psnr": 81.13245315713661,
+    "ssim": 0.9999999380319052,
+    "chi2_cover": {
+      "R": {
+        "chi2": 273.06666666666666,
+        "df": 127
+      },
+      "G": {
+        "chi2": 273.06666666666666,
+        "df": 127
+      },
+      "B": {
+        "chi2": 109.79156177341788,
+        "df": 127
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 274.80182291666665,
+        "df": 127
+      },
+      "G": {
+        "chi2": 190.97291666666666,
+        "df": 127
+      },
+      "B": {
+        "chi2": 114.83094358177618,
+        "df": 127
+      }
+    }
+  },
+  {
+    "cover": "imgs\\gradient.png",
+    "stego": "results\\gradient_lsb_0p5.png",
+    "bits_per_channel": 1,
+    "payload_percent": 0.5,
+    "psnr": 74.2273441545976,
+    "ssim": 0.9999996992762589,
+    "chi2_cover": {
+      "R": {
+        "chi2": 273.06666666666666,
+        "df": 127
+      },
+      "G": {
+        "chi2": 273.06666666666666,
+        "df": 127
+      },
+      "B": {
+        "chi2": 109.79156177341788,
+        "df": 127
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 271.98932291666665,
+        "df": 127
+      },
+      "G": {
+        "chi2": 405.89166666666665,
+        "df": 127
+      },
+      "B": {
+        "chi2": 98.24190569686179,
+        "df": 127
+      }
+    }
+  },
+  {
+    "cover": "imgs\\gradient.png",
+    "stego": "results\\gradient_lsb_1p0.png",
+    "bits_per_channel": 1,
+    "payload_percent": 1.0,
+    "psnr": 71.1379680084415,
+    "ssim": 0.9999994074584955,
+    "chi2_cover": {
+      "R": {
+        "chi2": 273.06666666666666,
+        "df": 127
+      },
+      "G": {
+        "chi2": 273.06666666666666,
+        "df": 127
+      },
+      "B": {
+        "chi2": 109.79156177341788,
+        "df": 127
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 272.3515625,
+        "df": 127
+      },
+      "G": {
+        "chi2": 173.94791666666666,
+        "df": 127
+      },
+      "B": {
+        "chi2": 93.47482147767307,
+        "df": 127
+      }
+    }
+  },
+  {
+    "cover": "imgs\\gradient.png",
+    "stego": "results\\gradient_lsb_5p0.png",
+    "bits_per_channel": 1,
+    "payload_percent": 5.0,
+    "psnr": 64.16551944915736,
+    "ssim": 0.9999970573149854,
+    "chi2_cover": {
+      "R": {
+        "chi2": 273.06666666666666,
+        "df": 127
+      },
+      "G": {
+        "chi2": 273.06666666666666,
+        "df": 127
+      },
+      "B": {
+        "chi2": 109.79156177341788,
+        "df": 127
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 261.92682291666665,
+        "df": 127
+      },
+      "G": {
+        "chi2": 225.42643229166666,
+        "df": 127
+      },
+      "B": {
+        "chi2": 99.40400939578124,
+        "df": 127
+      }
+    }
+  },
+  {
+    "cover": "imgs\\minecraft.png",
+    "stego": "results\\minecraft_lsb_0p1.png",
+    "bits_per_channel": 1,
+    "payload_percent": 0.1,
+    "psnr": 81.16441383500428,
+    "ssim": 0.9999999740720216,
+    "chi2_cover": {
+      "R": {
+        "chi2": 41433.985674808326,
+        "df": 127
+      },
+      "G": {
+        "chi2": 31215.377590623415,
+        "df": 127
+      },
+      "B": {
+        "chi2": 34043.654627362346,
+        "df": 127
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 41427.86965113832,
+        "df": 127
+      },
+      "G": {
+        "chi2": 31200.871510704845,
+        "df": 127
+      },
+      "B": {
+        "chi2": 34059.445868416005,
+        "df": 127
+      }
+    }
+  },
+  {
+    "cover": "imgs\\minecraft.png",
+    "stego": "results\\minecraft_lsb_0p5.png",
+    "bits_per_channel": 1,
+    "payload_percent": 0.5,
+    "psnr": 74.115113035687,
+    "ssim": 0.9999998725780712,
+    "chi2_cover": {
+      "R": {
+        "chi2": 41433.985674808326,
+        "df": 127
+      },
+      "G": {
+        "chi2": 31215.377590623415,
+        "df": 127
+      },
+      "B": {
+        "chi2": 34043.654627362346,
+        "df": 127
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 41362.07792616423,
+        "df": 127
+      },
+      "G": {
+        "chi2": 31182.70685269847,
+        "df": 127
+      },
+      "B": {
+        "chi2": 33913.94615105573,
+        "df": 127
+      }
+    }
+  },
+  {
+    "cover": "imgs\\minecraft.png",
+    "stego": "results\\minecraft_lsb_1p0.png",
+    "bits_per_channel": 1,
+    "payload_percent": 1.0,
+    "psnr": 71.18150334333632,
+    "ssim": 0.9999997535048125,
+    "chi2_cover": {
+      "R": {
+        "chi2": 41433.985674808326,
+        "df": 127
+      },
+      "G": {
+        "chi2": 31215.377590623415,
+        "df": 127
+      },
+      "B": {
+        "chi2": 34043.654627362346,
+        "df": 127
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 41246.2175496043,
+        "df": 127
+      },
+      "G": {
+        "chi2": 31124.631930318214,
+        "df": 127
+      },
+      "B": {
+        "chi2": 33455.26881812339,
+        "df": 127
+      }
+    }
+  },
+  {
+    "cover": "imgs\\minecraft.png",
+    "stego": "results\\minecraft_lsb_5p0.png",
+    "bits_per_channel": 1,
+    "payload_percent": 5.0,
+    "psnr": 64.1485770039162,
+    "ssim": 0.9999987265604284,
+    "chi2_cover": {
+      "R": {
+        "chi2": 41433.985674808326,
+        "df": 127
+      },
+      "G": {
+        "chi2": 31215.377590623415,
+        "df": 127
+      },
+      "B": {
+        "chi2": 34043.654627362346,
+        "df": 127
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 41082.28993752729,
+        "df": 127
+      },
+      "G": {
+        "chi2": 30485.025753881102,
+        "df": 127
+      },
+      "B": {
+        "chi2": 32803.378056176116,
+        "df": 127
+      }
+    }
+  },
+  {
+    "cover": "imgs\\noise_texture.png",
+    "stego": "results\\noise_texture_lsb_0p1.png",
+    "bits_per_channel": 1,
+    "payload_percent": 0.1,
+    "psnr": 80.99147128314014,
+    "ssim": 0.99999800934359,
+    "chi2_cover": {
+      "R": {
+        "chi2": 1406.441419531477,
+        "df": 31
+      },
+      "G": {
+        "chi2": 1406.441419531477,
+        "df": 31
+      },
+      "B": {
+        "chi2": 1406.441419531477,
+        "df": 31
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 1400.0168117078479,
+        "df": 31
+      },
+      "G": {
+        "chi2": 1403.2597605721817,
+        "df": 31
+      },
+      "B": {
+        "chi2": 1404.8655944060718,
+        "df": 31
+      }
+    }
+  },
+  {
+    "cover": "imgs\\noise_texture.png",
+    "stego": "results\\noise_texture_lsb_0p5.png",
+    "bits_per_channel": 1,
+    "payload_percent": 0.5,
+    "psnr": 74.14054913259791,
+    "ssim": 0.9999896806917836,
+    "chi2_cover": {
+      "R": {
+        "chi2": 1406.441419531477,
+        "df": 31
+      },
+      "G": {
+        "chi2": 1406.441419531477,
+        "df": 31
+      },
+      "B": {
+        "chi2": 1406.441419531477,
+        "df": 31
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 1378.1709010037648,
+        "df": 31
+      },
+      "G": {
+        "chi2": 1387.2475102537903,
+        "df": 31
+      },
+      "B": {
+        "chi2": 1399.7342344418723,
+        "df": 31
+      }
+    }
+  },
+  {
+    "cover": "imgs\\noise_texture.png",
+    "stego": "results\\noise_texture_lsb_1p0.png",
+    "bits_per_channel": 1,
+    "payload_percent": 1.0,
+    "psnr": 71.10936695134941,
+    "ssim": 0.9999792462227463,
+    "chi2_cover": {
+      "R": {
+        "chi2": 1406.441419531477,
+        "df": 31
+      },
+      "G": {
+        "chi2": 1406.441419531477,
+        "df": 31
+      },
+      "B": {
+        "chi2": 1406.441419531477,
+        "df": 31
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 1370.2375952285981,
+        "df": 31
+      },
+      "G": {
+        "chi2": 1359.9901737126281,
+        "df": 31
+      },
+      "B": {
+        "chi2": 1371.6737171448399,
+        "df": 31
+      }
+    }
+  },
+  {
+    "cover": "imgs\\noise_texture.png",
+    "stego": "results\\noise_texture_lsb_5p0.png",
+    "bits_per_channel": 1,
+    "payload_percent": 5.0,
+    "psnr": 64.14539936844488,
+    "ssim": 0.9998967444558957,
+    "chi2_cover": {
+      "R": {
+        "chi2": 1406.441419531477,
+        "df": 31
+      },
+      "G": {
+        "chi2": 1406.441419531477,
+        "df": 31
+      },
+      "B": {
+        "chi2": 1406.441419531477,
+        "df": 31
+      }
+    },
+    "chi2_stego": {
+      "R": {
+        "chi2": 1262.269467797806,
+        "df": 31
+      },
+      "G": {
+        "chi2": 1292.1595749373234,
+        "df": 31
+      },
+      "B": {
+        "chi2": 1253.822550239903,
+        "df": 31
+      }
+    }
+  }
+]
