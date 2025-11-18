@@ -15,8 +15,6 @@
 ```bash
     python src/main.py encode --cover imgs/noise_texture.png --out imgs/noise_texture_stego_1p.png --text "сообщение" --payload-percent 1
 ```
-#### --payload-percent — сколько процентов от доступной ёмкости использовать (например: 0.1, 0.5, 1, 5)
-
 
 ### Режим эксперимента 
 ```bash
