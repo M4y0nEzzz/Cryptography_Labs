@@ -1,6 +1,6 @@
 # Лабораторная работа №2. Стеганография в изображениях (LSB).
 
-## Утилита. Вход и выход.
+## Вход и выход.
    **Поддерживаются 3 режима работы**:
    1) Режим вставки (encode)
       ```bash
@@ -22,8 +22,6 @@
       
     
 ## Вставка и извлечение.
-Для начала выполняются определенные преобразования для успешного encode и decode.
-
 ```python
 def text_to_bytes(text: str, encoding: str = "utf-8") -> bytes:
     return text.encode(encoding)
@@ -60,7 +58,6 @@ def _capacity_bits_rgb(width: int, height: int, bits_per_channel: int = 1) -> in
 
 
 ```python
-# Payload. [32-битная длина сообщения в байтах][байты сообщения]
 def _build_payload_bits(message: bytes) -> list[int]:
     msg_len = len(message)
     if msg_len > 0xFFFFFFFF:
@@ -69,7 +66,6 @@ def _build_payload_bits(message: bytes) -> list[int]:
     full = header + message
     return bytes_to_bits(full)
 
-# Извлечение 32-битной длины и самих данных
 def _parse_payload_bits(bits: list[int]) -> bytes:
     if len(bits) < 32:
         raise ValueError("Not enough bits for length header")
@@ -191,7 +187,7 @@ def _extract_bits_lsb_rgb(
     return bits
 ```
 
-Функция для декодирвоания:
+Функция для извлечения сообщения из изображения:
 ```python
 def lsb_decode_image(
     stego_path: str | Path,
@@ -226,7 +222,7 @@ def lsb_decode_image(
 ```
 
 
-## Вычисление метрик. Оценка незаметности и проверка обнаружимости.
+## Вычисление метрик.
 
 ### PSNR (Peak Signal-to-Noise Ratio)
 PSNR измеряет сходство между исходным и стего- изображениями.
@@ -254,16 +250,7 @@ def psnr_rgb(cover: bytes, stego: bytes) -> float:
 ```txt
 MSE = (1/N) × Σ(i=1 to N) (I_original(i) - I_stego(i))²
 PSNR = 10 × log₁₀(MAX² / MSE)
-```
-`MAX = 255`. 
-
-Диапазон результатов и их анализ:
-> 50+ дБ - отличное качество с невидимыми искажениями;
-> 40-50 дБ - хорошее качество, искажения заметны едва-едва;
-> 30-40 дБ - искажения заметны, качество хуже;
-> менее 30 дБ - плохое качество с сильнми искажениями.
-> 
-> 
+``` 
 
 ### SSIM (Structural Similarity Index Measure)
 SSIM оценивает структурное сходство изображений, учитывая три компоненты:
@@ -291,6 +278,7 @@ def ssim_gray_from_lists(x: list[float], y: list[float]) -> float:
     if n == 0:
         return float("nan")
 
+    # Средняяя яркость
     mean_x = sum(x) / n
     mean_y = sum(y) / n
 
@@ -304,7 +292,8 @@ def ssim_gray_from_lists(x: list[float], y: list[float]) -> float:
         var_x += dx * dx
         var_y += dy * dy
         cov_xy += dx * dy
-
+    
+    # Дисперсия и ковариация
     var_x /= n
     var_y /= n
     cov_xy /= n
@@ -329,11 +318,6 @@ def ssim_rgb(cover: bytes, stego: bytes, width: int, height: int) -> float:
     gray_stego = _rgb_to_gray_list(stego, width, height)
     return ssim_gray_from_lists(gray_cov, gray_stego)
 ```
-Анализ результатов:
-> 0.95-1.00 - практически идентичные изображения;
-> 0.9-0.95 - сходство изображений очень высокое;
-> 0.8-0.9 - сходство неплохое;
-> менее 0.8 - различия сильно заметны.
 
 
 ### Статический стегоанализ. Хи-квадрат тест.

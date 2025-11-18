@@ -1,0 +1,40 @@
+{
+  "mode": "encode",
+  "cover": "imgs\\checkerboard.png",
+  "stego": "imgs\\checkerboard_stego.png",
+  "bits_per_channel": 1,
+  "payload_percent": null,
+  "psnr": 91.28957940922425,
+  "ssim": 0.9999999985799101,
+  "chi2_cover": {
+    "R": {
+      "chi2": 262144.0,
+      "df": 1
+    },
+    "G": {
+      "chi2": 262144.0,
+      "df": 1
+    },
+    "B": {
+      "chi2": 262144.0,
+      "df": 1
+    }
+  },
+  "chi2_stego": {
+    "R": {
+      "chi2": 262072.0098876953,
+      "df": 1
+    },
+    "G": {
+      "chi2": 262104.0030517578,
+      "df": 1
+    },
+    "B": {
+      "chi2": 262104.0030517578,
+      "df": 1
+    }
+  },
+  "hist_cover": "results\\checkerboard_hist_cover.png",
+  "hist_stego": "results\\checkerboard_hist_stego.png",
+  "diff_map": "results\\checkerboard_diff_map.png"
+}
