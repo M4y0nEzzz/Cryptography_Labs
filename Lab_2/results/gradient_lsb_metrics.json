@@ -1,0 +1,46 @@
+{
+  "mode": "encode",
+  "cover": "imgs\\gradient.png",
+  "stego": "imgs\\gradient_stego.png",
+  "bits_per_channel": 1,
+  "payload_percent": null,
+  "psnr": 83.35829534569127,
+  "ssim": 0.9999999701388906,
+  "chi2_cover": {
+    "R": {
+      "chi2": 273.06666666666666,
+      "df": 127,
+      "p_value": 1.0499379143880105e-12
+    },
+    "G": {
+      "chi2": 273.06666666666666,
+      "df": 127,
+      "p_value": 1.0499379143880105e-12
+    },
+    "B": {
+      "chi2": 109.79156177341788,
+      "df": 127,
+      "p_value": 0.8622410220193139
+    }
+  },
+  "chi2_stego": {
+    "R": {
+      "chi2": 274.71783854166665,
+      "df": 127,
+      "p_value": 6.67021993194794e-13
+    },
+    "G": {
+      "chi2": 216.35572916666666,
+      "df": 127,
+      "p_value": 1.314024972165484e-06
+    },
+    "B": {
+      "chi2": 114.86997967920794,
+      "df": 127,
+      "p_value": 0.7717416135275161
+    }
+  },
+  "hist_cover": "results\\gradient_hist_cover.png",
+  "hist_stego": "results\\gradient_hist_stego.png",
+  "diff_map": "results\\gradient_diff_map.png"
+}

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import math
 from typing import Tuple
-
+from scipy import stats
 
 def _rgb_to_gray_list(rgb_bytes: bytes, width: int, height: int) -> list[float]:
     gray: list[float] = []
@@ -114,7 +114,8 @@ def hi2_lsb_all_channels(rgb_bytes: bytes) -> dict:
     result = {}
     for ch, name in enumerate(("R", "G", "B")):
         chi2, df = hi2_lsb_channel(rgb_bytes, ch)
-        result[name] = {"chi2": chi2, "df": df}
+        p_value = 1 - stats.chi2.cdf(chi2, df)
+        result[name] = {"chi2": chi2, "df": df, "p_value": p_value}
     return result
 
 
