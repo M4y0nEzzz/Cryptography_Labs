@@ -2,13 +2,13 @@
 
 ## Утилита. Вход и выход.
    **Поддерживаются 3 режима работы**:
-   1) Режим кодирования (encode)
+   1) Режим вставки (encode)
       ```bash
           python src/main.py encode --cover imgs/checkerboard.png --out imgs/checkerboard_stego.png --text "Сообщение" --payload-percent 0.5
       ```
     
       
-   2) Режим декодирования (decode)
+   2) Режим извлечения (decode)
       ```bash
           python src/main.py decode --stego imgs/checkerboard_stego.png
       ```
@@ -21,17 +21,16 @@
 
       
     
-## Встраивание и извлечение.
+## Вставка и извлечение.
 Для начала выполняются определенные преобразования для успешного encode и decode.
+
 ```python
-# Преобразования текст->байты и наоборот
 def text_to_bytes(text: str, encoding: str = "utf-8") -> bytes:
     return text.encode(encoding)
 
 def bytes_to_text(data: bytes, encoding: str = "utf-8") -> str:
     return data.decode(encoding, errors="replace")
 
-# Преобразования байты->список_битов и наоборот
 def bytes_to_bits(data: bytes) -> list[int]:
     bits: list[int] = []
     for b in data:
@@ -50,6 +49,16 @@ def bits_to_bytes(bits: list[int]) -> bytes:
         out.append(byte)
     return bytes(out)
 ```
+
+```python
+# Расчет емкости
+def _capacity_bits_rgb(width: int, height: int, bits_per_channel: int = 1) -> int:
+    if bits_per_channel != 1:
+        raise ValueError("Only 1 LSB per channel is supported in this implementation")
+    return width * height * 3 * bits_per_channel
+```
+
+
 ```python
 # Payload. [32-битная длина сообщения в байтах][байты сообщения]
 def _build_payload_bits(message: bytes) -> list[int]:
@@ -78,18 +87,10 @@ def _parse_payload_bits(bits: list[int]) -> bytes:
     msg_bits = bits[32:32 + msg_len * 8]
     return bits_to_bytes(msg_bits)
 ```
-Расчет емкости и управление нагрузкой:
-```python
-def _capacity_bits_rgb(width: int, height: int, bits_per_channel: int = 1) -> int:
-    if bits_per_channel != 1:
-        raise ValueError("Only 1 LSB per channel is supported in this implementation")
-    return width * height * 3 * bits_per_channel
-```
 
 
-Основной алгоритм встраивания:
+Алгоритм встраивания:
 ```python
-# Вставка сообщения в младшие биты
 def _embed_bits_lsb_rgb(
     rgb_bytes: bytes,
     width: int,
@@ -107,13 +108,10 @@ def _embed_bits_lsb_rgb(
     data = bytearray(rgb_bytes)
     bit_idx = 0
     n = len(data)
-    
-    # Построчный обход: row-major порядок
-    # Внутри пикселя: каналы R, G, B
+
     for i in range(n):
         if bit_idx >= total_bits:
             break
-        # Замена младшего бита: (pixel & 0xFE) | message_bit
         b = data[i]
         b = (b & 0xFE) | (message_bits[bit_idx] & 1)
         data[i] = b
@@ -140,7 +138,7 @@ def lsb_encode_image(
     capacity_bits = _capacity_bits_rgb(w, h, bits_per_channel)
     all_payload_bits = _build_payload_bits(message)
 
-    # Ограничение по payload_frac
+    # Ограничение по payload
     if payload_frac is not None:
         if not (0.0 < payload_frac <= 1.0):
             raise ValueError("payload_frac must be in (0, 1]")
@@ -187,7 +185,7 @@ def _extract_bits_lsb_rgb(
     
     bits: list[int] = []
     for b in rgb_bytes:
-        bits.append(b & 1)  # извлечение младшего бита
+        bits.append(b & 1)
         if len(bits) >= n_bits:
             break
     return bits
@@ -226,13 +224,12 @@ def lsb_decode_image(
     message = _parse_payload_bits(all_bits)
     return message
 ```
-Порядок обхода пикселей - построчный, внутри пикселя по каналам.
 
 
 ## Вычисление метрик. Оценка незаметности и проверка обнаружимости.
 
 ### PSNR (Peak Signal-to-Noise Ratio)
-PSNR измеряет отношение максимально возможной мощности сигнала к мощности шума, вносимого стеганографическими изменениями.
+PSNR измеряет сходство между исходным и стего- изображениями.
 
 ```python
 def psnr_rgb(cover: bytes, stego: bytes) -> float:
@@ -242,7 +239,6 @@ def psnr_rgb(cover: bytes, stego: bytes) -> float:
     if n == 0:
         return float("nan")
     
-    # Вычисление MSE (Mean Squared Error)
     mse = 0.0
     for a, b in zip(cover, stego):
         d = a - b
@@ -264,10 +260,12 @@ PSNR = 10 × log₁₀(MAX² / MSE)
 Диапазон результатов и их анализ:
 > 50+ дБ - отличное качество с невидимыми искажениями;
 > 40-50 дБ - хорошее качество, искажения заметны едва-едва;
-> 30-40 дБ - искажения заметны, качество так себе;
-> менее 30 дБ - ужасное качество с сильнми искажениями.
+> 30-40 дБ - искажения заметны, качество хуже;
+> менее 30 дБ - плохое качество с сильнми искажениями.
+> 
+> 
 
-### SSIM (Structural Similarity Index)
+### SSIM (Structural Similarity Index Measure)
 SSIM оценивает структурное сходство изображений, учитывая три компоненты:
 - Яркость;
 - Контраст;
@@ -275,7 +273,6 @@ SSIM оценивает структурное сходство изображе
 
 ```python
 def _rgb_to_gray_list(rgb_bytes: bytes, width: int, height: int) -> list[float]:
-    """Преобразование RGB в grayscale с использованием коэффициентов яркости"""
     gray: list[float] = []
     n_pixels = width * height
     it = iter(rgb_bytes)
@@ -283,24 +280,20 @@ def _rgb_to_gray_list(rgb_bytes: bytes, width: int, height: int) -> list[float]:
         r = next(it)
         g = next(it)
         b = next(it)
-        # Стандартные коэффициенты яркости
         y = 0.299 * r + 0.587 * g + 0.114 * b
         gray.append(y)
     return gray
 
 def ssim_gray_from_lists(x: list[float], y: list[float]) -> float:
-    """Вычисление SSIM для grayscale изображений"""
     if len(x) != len(y):
         raise ValueError("SSIM: lengths differ")
     n = len(x)
     if n == 0:
         return float("nan")
 
-    # Вычисление средних значений
     mean_x = sum(x) / n
     mean_y = sum(y) / n
 
-    # Вычисление дисперсий и ковариации
     var_x = 0.0
     var_y = 0.0
     cov_xy = 0.0
@@ -316,12 +309,11 @@ def ssim_gray_from_lists(x: list[float], y: list[float]) -> float:
     var_y /= n
     cov_xy /= n
 
-    # Константы стабилизации
-    L = 255.0  # Динамический диапазон
+    L = 255.0
     C1 = (0.01 * L) ** 2
     C2 = (0.03 * L) ** 2
 
-    # Формула SSIM
+    
     num = (2 * mean_x * mean_y + C1) * (2 * cov_xy + C2)
     den = (mean_x * mean_x + mean_y * mean_y + C1) * (var_x + var_y + C2)
     
@@ -330,7 +322,6 @@ def ssim_gray_from_lists(x: list[float], y: list[float]) -> float:
     return num / den
 
 def ssim_rgb(cover: bytes, stego: bytes, width: int, height: int) -> float:
-    """SSIM по яркостной компоненте между RGB-изображениями"""
     if len(cover) != len(stego):
         raise ValueError("SSIM: lengths differ")
     
@@ -346,18 +337,13 @@ def ssim_rgb(cover: bytes, stego: bytes, width: int, height: int) -> float:
 
 
 ### Статический стегоанализ. Хи-квадрат тест.
-
-В теории хи-квадрат теста имеются две гипотезы:
-1) LSB распределены равномерно, сообщения нет;
-2) LSB содержит структуру, сообщение есть.
-
-Принцип:
-При LSB-встраивании пары значений (2k, 2k+1) имеют тенденцию к "выравниванию", так как встраивание случайных битов делает распределение более равномерным.
+Этот тест проверяет, насколько распеделение младших битов отличается от нормального.
+Рассматриваются пары (2k ; 2k+1). Кажыдй пиксель рассматривается как часть пары для проверки на
+изменение распределения значений в младших битах.
 
 Реализация:
 ```python
 def _channel_histogram(rgb_bytes: bytes, channel: int) -> list[int]:
-    """Построение гистограммы для указанного канала"""
     if channel not in (0, 1, 2):
         raise ValueError("channel must be 0 (R), 1 (G) or 2 (B)")
     
@@ -366,38 +352,35 @@ def _channel_histogram(rgb_bytes: bytes, channel: int) -> list[int]:
     base = channel
     
     for i in range(n_pixels):
-        v = rgb_bytes[3 * i + base]  # Доступ к каналу R, G или B
+        v = rgb_bytes[3 * i + base]
         hist[v] += 1
         
     return hist
 
 def hi2_lsb_channel(rgb_bytes: bytes, channel: int) -> Tuple[float, int]:
-    """χ²-тест для одного канала изображения"""
     hist = _channel_histogram(rgb_bytes, channel)
     chi2 = 0.0
     used_pairs = 0
 
     # Анализ пар (2k, 2k+1)
     for k in range(0, 256, 2):
-        o0 = hist[k]      # Наблюдаемая частота для 2k
-        o1 = hist[k + 1]  # Наблюдаемая частота для 2k+1
+        o0 = hist[k]      
+        o1 = hist[k + 1] 
         s = o0 + o1
         
         if s == 0:
-            continue  # Пропуск пустых пар
+            continue
             
-        e = s / 2.0  # Ожидаемая частота при равномерном распределении
+        e = s / 2.0
         
-        # Вычисление χ² статистики для пары
+        
         chi2 += (o0 - e) * (o0 - e) / e + (o1 - e) * (o1 - e) / e
         used_pairs += 1
 
-    # Степени свободы: количество пар - 1
     df = max(used_pairs - 1, 1)
     return chi2, df
 
 def hi2_lsb_all_channels(rgb_bytes: bytes) -> dict:
-    """χ²-тест для всех цветовых каналов"""
     result = {}
     for ch, name in enumerate(("R", "G", "B")):
         chi2, df = hi2_lsb_channel(rgb_bytes, ch)
@@ -405,93 +388,58 @@ def hi2_lsb_all_channels(rgb_bytes: bytes) -> dict:
     return result
 ```
 
-Расчет p-value
+p-value - вероятность того, что наблюдаемое распределение младших битов можно объяснить случайно.
+Чем оно меньше, тем более вероятно, что изменения в изображении произошли не случайно.
+
+Расчет p-value для определения значимости результатов теста:
 ```python
 import scipy.stats as stats
 
 def calculate_p_value(chi2_stat: float, df: int) -> float:
-    """Расчет p-value по χ² статистике и степеням свободы"""
     return 1 - stats.chi2.cdf(chi2_stat, df)
 ```
+Результаты:
+- p-value > 0.05: распределение младших битов почти не изменилось;
 
-Критерии обнаружения:
-- p-value > 0.05: Нет статистически значимых свидетельств стеганографии
+- p-value ≤ 0.05: распределение изменилось, мб скрытая информация;
 
-- p-value ≤ 0.05: Обнаружены статистически значимые аномалии (стеганография)
-
-- p-value ≤ 0.01: Сильные свидетельства стеганографии
-
-- p-value ≤ 0.001: Очень сильные свидетельства стеганографии
+- p-value ≤ 0.01: Сильные свидетельства стеганографии.
 
 
 Карты разности:
-Назначение: Пространственная визуализация модифицированных пикселей.
+В карте разности отображаются различия между исходным и стего-изображением, 
+что позволяет наглядно увидеть, 
+где и насколько сильно изменилось изображение после встраивания скрытого сообщения.
 
 ```python
 def diff_map_png(cover_rgb: bytes, stego_rgb: bytes, width: int, height: int, output_path: Path):
-    """Создание карты разности между изображениями"""
     diff = []
     for a, b in zip(cover_rgb, stego_rgb):
-        # Усиление разности для наглядности
-        diff_val = abs(a - b) * 50  # Коэффициент усиления
+        diff_val = abs(a - b) * 50
         diff.append(min(255, int(diff_val)))
     
     diff_img = Image.frombytes("L", (width, height), bytes(diff))
     diff_img.save(output_path)
 ```
+
 Интерпретация результатов:
 - Равномерное распределение: Случайный характер изменений (хорошо);
 - Структурные паттерны: Систематические изменения (плохо);
 - Скопления изменений: Локализованные модификации.
 
 
-## Влияние payload. Анализ и сравнение.
 
-Эксперимент-мод:
-```python
-def run_experiment(args: argparse.Namespace) -> None:
-    imgs_dir = Path(args.imgs_dir)
-    covers: List[Path] = sorted(imgs_dir.glob("*.png"))
-    bits_per_channel = args.bits
-    payload_percents = [0.1, 0.5, 1.0, 5.0]
-    rows: list[dict] = []
+## Тесты
 
-    for cover_path in covers:
-        cover_rgb, w, h = load_image(cover_path)
-        capacity_bits = w * h * 3 * bits_per_channel
-
-        for p in payload_percents:
-            payload_frac = p / 100.0
-            max_bits = int(capacity_bits * payload_frac)
-            max_bits = (max_bits // 8) * 8  # Выравнивание по байтам
-            
-            if max_bits < 32 + 8:  # Минимум: заголовок + 1 байт данных
-                continue
-                
-            msg_bytes_avail = (max_bits - 32) // 8
-            message = os.urandom(msg_bytes_avail)  # Случайные данные
-            
-            # Создание стего-изображения
-            stego_path = Path("results") / f"{cover_path.stem}_lsb_{p}.png"
-            lsb_encode_image(cover_path, stego_path, message, bits_per_channel, payload_frac)
-            
-            # Расчет метрик
-            stego_rgb, w2, h2 = load_image(stego_path)
-            psnr_val = psnr_rgb(cover_rgb, stego_rgb)
-            ssim_val = ssim_rgb(cover_rgb, stego_rgb, w, h)
-            chi2_cover = hi2_lsb_all_channels(cover_rgb)
-            chi2_stego = hi2_lsb_all_channels(stego_rgb)
-            
-            row = {
-                "cover": str(cover_path),
-                "payload_percent": p,
-                "psnr": psnr_val,
-                "ssim": ssim_val,
-                "chi2_cover": chi2_cover,
-                "chi2_stego": chi2_stego,
-            }
-            rows.append(row)
-```
-# ДОПИСАТЬ!
-
-
+1) Вставим сообщение "криптография" в изображение checkerboard.png:
+      ```bash
+          python src/main.py encode --cover imgs/checkerboard.png --out imgs/checkerboard_stego.png --text "криптография"
+      ```
+      Теперь извлечем сообщение из того же изображения:
+      ```bash
+          python src/main.py decode --stego imgs/checkerboard_stego.png
+      ```
+2) Проведем эксперимент по payload:
+      ```bash
+           python src/main.py experiment --imgs-dir imgs
+      ```

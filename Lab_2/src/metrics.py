@@ -116,3 +116,17 @@ def hi2_lsb_all_channels(rgb_bytes: bytes) -> dict:
         chi2, df = hi2_lsb_channel(rgb_bytes, ch)
         result[name] = {"chi2": chi2, "df": df}
     return result
+
+
+# Вероятность, что хи-квадрат (стего) > хи-квадрат (ковер)
+def auc(cover_scores: list[float], stego_scores: list[float]) -> float:
+    better = 0
+    total = 0
+
+    for s in stego_scores:
+        for c in cover_scores:
+            total += 1
+            if s > c:
+                better += 1
+
+    return better / total

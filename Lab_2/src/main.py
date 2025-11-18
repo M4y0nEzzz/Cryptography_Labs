@@ -172,9 +172,57 @@ def run_experiment(args: argparse.Namespace) -> None:
             rows.append(row)
             print(f"[OK] payload {p:.3f}% on {cover_path.name}: PSNR={psnr_val:.3f}, SSIM={ssim_val:.5f}")
 
-    out_json = Path("results") / "lsb_experiment_payload.json"
-    out_json.write_text(json.dumps(rows, indent=2), encoding="utf-8")
-    print(f"[OK] Experiment summary saved to {out_json}")
+
+
+    if not rows:
+        print("[WARN] No rows collected in experiment; nothing to compute AUC on.")
+        return
+
+    cover_R: list[float] = []
+    cover_G: list[float] = []
+    cover_B: list[float] = []
+    stego_R: list[float] = []
+    stego_G: list[float] = []
+    stego_B: list[float] = []
+
+    for row in rows:
+        cov = row["chi2_cover"]
+        st = row["chi2_stego"]
+
+        cover_R.append(cov["R"]["chi2"])
+        cover_G.append(cov["G"]["chi2"])
+        cover_B.append(cov["B"]["chi2"])
+
+        stego_R.append(st["R"]["chi2"])
+        stego_G.append(st["G"]["chi2"])
+        stego_B.append(st["B"]["chi2"])
+
+    auc_R = auc(cover_R, stego_R)
+    auc_G = auc(cover_G, stego_G)
+    auc_B = auc(cover_B, stego_B)
+
+    cover_mean: list[float] = []
+    stego_mean: list[float] = []
+    for r, g, b in zip(cover_R, cover_G, cover_B):
+        cover_mean.append((r + g + b) / 3.0)
+    for r, g, b in zip(stego_R, stego_G, stego_B):
+        stego_mean.append((r + g + b) / 3.0)
+
+    auc_mean = auc(cover_mean, stego_mean)
+
+    metrics_obj = {
+        "rows": rows,
+        "auc": {
+            "R": auc_R,
+            "G": auc_G,
+            "B": auc_B,
+            "meanRGB": auc_mean,
+        },
+    }
+
+    out_json = Path("results") / "lsb_experiment_metrics.json"
+    out_json.write_text(json.dumps(metrics_obj, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"[OK] Experiment metrics (incl. AUC) saved to {out_json}")
 
 
 # CLI

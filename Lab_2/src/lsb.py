@@ -35,11 +35,10 @@ def bits_to_bytes(bits: list[int]) -> bytes:
 
 
 
-# Емкость контейнера в битах
+# Емкость изображения в битах
 def _capacity_bits_rgb(width: int, height: int, bits_per_channel: int = 1) -> int:
     if bits_per_channel != 1:
-        # В лабе явно про 1 LSB; можно расширить потом.
-        raise ValueError("Only 1 LSB per channel is supported in this implementation")
+        raise ValueError("1 LSB per channel")
     return width * height * 3 * bits_per_channel
 
 
@@ -70,7 +69,7 @@ def _embed_bits_lsb_rgb(
     return bytes(data)
 
 
-# Извлечение первых n_bits из младших
+# Извлечение сообщения из младших битов
 def _extract_bits_lsb_rgb(
     rgb_bytes: bytes,
     width: int,
