@@ -11,22 +11,9 @@
    python src/main.py decode --stego imgs/checkerboard_stego.png
 ```
 
-
 ### Ограничение payload
 ```bash
     python src/main.py encode --cover imgs/noise_texture.png --out imgs/noise_texture_stego_1p.png --text "сообщение" --payload-percent 1
-```
-#### --payload-percent — сколько процентов от доступной ёмкости использовать (например: 0.1, 0.5, 1, 5)
-
-### Число LSB на канал
-```bash
-   python src/main.py encode --cover imgs/gradient.png --out imgs/gradient_stego.png --text "test" --bits 1
-```
-#### --bits — сколько младших битов канала использовать
-
-### Извлечение текста
-```bash
-   python src/main.py decode --stego imgs/checkerboard_stego.png
 ```
 
 ### Режим эксперимента 
