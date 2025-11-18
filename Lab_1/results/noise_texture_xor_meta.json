@@ -1,0 +1,8 @@
+{
+  "algo": "xor",
+  "key_hash": "bd9a9f39d74fba794436fbb24f9b78746639c0b3ec385e8ea83bf64d3245f528",
+  "nonce_or_iv": "ebefe7680383bba70679c263f50d6401",
+  "date": "2025-11-11T11:41:27",
+  "input": "imgs/noise_texture.png",
+  "output": "imgs/noise_texture_xor.png"
+}

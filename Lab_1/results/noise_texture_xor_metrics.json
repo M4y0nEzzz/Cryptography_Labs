@@ -1,0 +1,14 @@
+{
+  "algo": "xor",
+  "input": "imgs/noise_texture.png",
+  "output": "imgs/noise_texture_xor.png",
+  "iv_hex": "ebefe7680383bba70679c263f50d6401",
+  "entropy_src": 4.805984077833154,
+  "entropy_enc": 7.999791137178435,
+  "corr_src": 0.9661574050123933,
+  "corr_enc": 0.003477205463430115,
+  "NPCR_src_vs_enc": 99.6185302734375,
+  "UACI_src_vs_enc": 25.155300065582875,
+  "KeySensitivity_NPCR": 99.6117909749349,
+  "KeySensitivity_UACI": 33.41165580001532
+}
