@@ -1,8 +1,0 @@
-{
-  "algo": "aes-cbc",
-  "key_hash": "bd9a9f39d74fba794436fbb24f9b78746639c0b3ec385e8ea83bf64d3245f528",
-  "nonce_or_iv": "06cd9db484703740fb3360a1cf638d96",
-  "date": "2025-11-11T11:43:08",
-  "input": "imgs/gradient.png",
-  "output": "imgs/gradient_aes-cbc.png"
-}

@@ -1,8 +1,0 @@
-{
-  "algo": "aes-ctr",
-  "key_hash": "bd9a9f39d74fba794436fbb24f9b78746639c0b3ec385e8ea83bf64d3245f528",
-  "nonce_or_iv": "7839f256bcbd8db2",
-  "date": "2025-11-11T11:39:18",
-  "input": "imgs/minecraft.png",
-  "output": "imgs/minecraft_aes-ctr.png"
-}
